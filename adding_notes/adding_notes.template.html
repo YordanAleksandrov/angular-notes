@@ -1,0 +1,24 @@
+	
+	<button id="new_note_text" ng-class="{active: self.isSelected(1)}" class="buttons " ng-click=" self.selectTab(1)">Create a Note</button>
+	<button id="new_note_list" ng-class="{active: self.isSelected(2)}" class="buttons " ng-click=" self.selectTab(2)">Create a Todo List</button>
+	
+	<form name="textnote" class="form_stuff" ng-show="self.isSelected(1)">
+			
+		<input  id="head" name="head" class="form_inputs" type="text" ng-model="self.title" placeholder="Note title"/>
+		<textarea  id="note_text" placeholder="Enter your note text here...." ng-model="self.message"></textarea>
+		<div class="error" id="error_note"> <p class='error_message' id='error_message'>You didn't add a title or description to the note</p></div>
+		<button id="save_text_note" class="buttons form_submits" ng-click="self.saveNote()">Save your note</button>
+		
+	</form>
+
+	<form  name="listnote"  class="form_stuff" ng-show="self.isSelected(2)">
+	
+		<input  id="head2" name="head2" class="form_inputs" type="text" ng-model="self.title2" placeholder="Note title"/>
+		
+		<div class="preview" id="preview"><ul id="preview_list"></ul></div>
+		<div class="error" id="error_list"> <p class='error_message' id='error_message2'>You should type something first</p></div>
+		<input  id="input_list_el" name="input_list_el" class="form_inputs" type="text" ng-model="self.todo" placeholder="type the new Todo here..."/>
+		<button id="save_list_note" class="buttons form_submits" >Save your Todo List</button>
+		<button id="add_todo" class="buttons form_submits" ng-click="self.addTodo(self.todo)">Add new Todo</button>
+	</form>
+	

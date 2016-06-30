@@ -1,0 +1,28 @@
+<div class="content">
+	<div class="header">
+		<h1>{{self.header_text}}</h1>
+	</div>
+	<div class="content_body">
+		
+		
+		<div class="menu_left">
+			
+			<adding-notes></adding-notes>
+			
+		</div>	
+		<div class="notes_right">
+		<!--{{self.notes_text.notesWithText[0].message}}
+		<p>-  {{self.time}}  / {{self.date}}.</p>
+		-->
+			<div class="presentation" ng-repeat="note in $root.notes">
+			
+				<h1>{{note.head}}</h1>
+				<p>{{note.message}}</p>
+				<p>-  {{note.dateSaved}}.</p>
+			
+			</div>
+		
+		</div>	
+		
+	</div>	
+</div>
