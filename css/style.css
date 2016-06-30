@@ -58,7 +58,7 @@ body{
 	height:auto;
 	float:left;
 	background-color:#6699ff;
-	min-height:450px;
+	min-height:370px;
 	
 }
 
@@ -131,7 +131,7 @@ body{
 	background-color:transparent;
 	border:1px solid grey;
 	padding:10px;
-	 
+	overflow:auto;
  }
  
  .presentation h1{
@@ -141,11 +141,11 @@ body{
  }
  
  
- .presentation p:first-of-type{
+.first_p{
 	
 	border-top:1px solid grey;
 	border-bottom:1px solid grey;
-	padding:5px;
+	padding:5px 15px;
 
  }
  
@@ -155,7 +155,7 @@ body{
 	
  }
  
- .form_submits{
+.form_submits{
 	 
 	height:40px;	
 
@@ -194,4 +194,19 @@ body{
 	padding-left:5px;
 	visibility:hidden;
 
+}
+
+.btn{
+	
+	background-color:#808080;
+	color:#1affff;
+	float:right;
+	width:70px;
+	margin:3px;
+	display:block;
+}
+
+.date{
+	
+	float:left;
 }

@@ -10,16 +10,30 @@
 			<adding-notes></adding-notes>
 			
 		</div>	
-		<div class="notes_right">
-		<!--{{self.notes_text.notesWithText[0].message}}
-		<p>-  {{self.time}}  / {{self.date}}.</p>
-		-->
-			<div class="presentation" ng-repeat="note in $root.notes">
+		<div class="notes_right" id="notes_right">
+				
+			<div class="presentation" id="hello" ng-repeat="note in $root.notes">
 			
 				<h1>{{note.head}}</h1>
-				<p>{{note.message}}</p>
-				<p>-  {{note.dateSaved}}.</p>
+				<p class="first_p">{{note.message}}</p>
+				<p class="date">-  {{note.dateSaved}}.</p>
+				<a class="btn" ng-click="self.removeNote(note)">Delete</a>
+				<a class="btn" >Edit</a>
+				
+			</div>
+
 			
+			<div class="presentation" ng-repeat="listnote in $root.listNotes" >
+			
+				<h1>{{listnote.head}}</h1>
+				
+				<ul class="first_p">
+					<li ng-repeat="list in listnote.message">{{list}}</li>
+				</ul>
+				
+				<p class="date">-  {{listnote.dateSaved}}.</p>
+				<a class="btn" ng-click="self.removeNote(listnote)">Delete</a>
+				<a class="btn">Edit</a>
 			</div>
 		
 		</div>	
