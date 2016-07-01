@@ -15,21 +15,14 @@ angular.
 			this.list = [];
 			this.date = $filter('date')(new Date(), 'dd, MMMM yyyy');
 			this.time = $filter('date')(new Date(), 'HH:mm');
-				/*
-				this.error.css("visibility","hidden");
-				self.title2="";
-				self.todo="";
-				this.preview_list.html("");
-				*/
+			
 			this.selectTab = function(setTab){
-				
 				
 				this.tab = setTab;
 				
 			};
 			
 			this.isSelected = function(checkTab){
-				
 				
 				return this.tab === checkTab;
 				
@@ -49,31 +42,71 @@ angular.
 					this.todo="";
 					
 				}
+				
 			};
 			
 			this.saveNote = function(){
 				
-				if((this.title === undefined || this.title === "") || (this.message === undefined || this.message === "")){
+				if($('.noNotes').length == 0){
 					
-					this.error_note.css("visibility","visible");
-					
-				}
-				else {
-					
-					this.error_note.css("visibility","hidden");
-					$rootScope.notes = $rootScope.notes.concat([
-					
-						{head :this.title ,message :this.message ,dateSaved:this.time +' / '+this.date}
+					if((this.title === undefined || this.title === "") || (this.message === undefined || this.message === "")){
 						
-					]);
+						this.error_note.css("visibility","visible");
+						
+					}else{
+						
+						this.error_note.css("visibility","hidden");
+						$rootScope.notes = $rootScope.notes.concat([
+						
+							{head :this.title ,message :this.message ,dateSaved:this.time +' / '+this.date}
+							
+						]);
+						
+						this.title="";
+						this.message="";
+		
+					}
+				}else {
 					
-					this.title="";
-					this.message="";
-	
-				};
+					$('.noNotes').remove();
+					this.saveNote();
+				}
 				
 			};
+						
+			this.saveListNote = function (){
 				
+				if($('.noNotes').length == 0){
+					
+					if(this.title2 === undefined || this.title2 === ""){
+						
+						this.error_list.css("visibility","visible");
+						
+					}else{
+						
+						this.error_list.css("visibility","hidden");
+	
+						$rootScope.listNotes = $rootScope.listNotes.concat([
+						
+							{head :this.title2 , message:this.list , dateSaved:this.time +' / '+this.date}
+							
+						]);
+						
+						this.preview_list.html("");
+						this.list = [];
+						this.title2 = "";	
+						this.todo="";
+						
+					};
+				}else{
+					
+					
+					$('.noNotes').remove();
+					this.saveListNote();
+				}
+				
+			};
+
 		}
 	
 	});
