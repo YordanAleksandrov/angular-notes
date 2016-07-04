@@ -10,16 +10,38 @@
 			<adding-notes></adding-notes>
 			
 		</div>	
-		<div class="notes_right">
-		<!--{{self.notes_text.notesWithText[0].message}}
-		<p>-  {{self.time}}  / {{self.date}}.</p>
-		-->
-			<div class="presentation" ng-repeat="note in $root.notes">
+		<div class="notes_right" id="notes_right">
+		
+			<div class="presentation" id="hello" ng-repeat="note in $root.notes track by $index">
+				
+				<h1 style="{display: self.state? self.state2 : self.state}" id="{{ 'note_head-' + $index }}">{{note.head}}</h1>
+				<input class="edit_head" id="{{ 'edit_head-' + $index }}" ng-model="note.head"/>
+				<p class="first_p" id="{{ 'first_p-' + $index }}">{{note.message}}</p>
+				<textarea  class="edit_msg" id="{{ 'edit_msg-' + $index }}"  ng-model="note.message"></textarea>
+				<p class="date">-  {{note.dateSaved}}.</p>
+				<a class="btn" id="delete_note" ng-click="self.removeNote(note)">Delete</a>
+				<a class="btn edit_note"  id="{{ 'edit_note-' + $index }}"  ng-click="self.editNoteTest($index,1)" >Edit</a>
+				<a class="btn save_edited_note" id="{{ 'save_edited_note-' + $index }}"  ng-click="self.saveEditedNote(note)" >Save</a>
+				
+			</div>
+
 			
-				<h1>{{note.head}}</h1>
-				<p>{{note.message}}</p>
-				<p>-  {{note.dateSaved}}.</p>
+			<div class="presentation" ng-repeat="(LIndex,listnote) in $root.listNotes track by $index" >
 			
+				<h1 id="{{ 'listnote_head-' + $index }}">{{listnote.head}}</h1>
+				<input class="edit_head" id="{{ 'edit_listhead-' + $index }}"  ng-model="listnote.head"/>
+				<ul class="first_p"  id="{{ 'notes_list-' + $index }}">
+					<li ng-repeat="list in listnote.message track by $index" id="{{ 'list_el-' + $index +'-'+LIndex}}" class="{{ 'list_el-' + LIndex}} notdone" ng-model="self.list" ng-click="self.checked($index,LIndex)">{{list}} </li>
+				</ul>
+				
+				<ul class="first_p2" id="{{ 'notes_list_edit-' + $index }}">
+					<li select multiple='true' ng-repeat="list in listnote.message track by $index"  id="{{ 'every_list-' + $index}}"><input class="{{ 'every_list_in_note-' + LIndex}} input_lists" id="{{ 'edit_list-' + $index }}"  ng-model="list" /></li>
+				</ul>
+				
+				<p class="date">-  {{listnote.dateSaved}}.</p>
+				<a class="btn" ng-click="self.removeNote(listnote)">Delete</a>
+				<a class="btn" id="{{ 'edit_listnote-' + $index }}" ng-click="self.editNoteTest($index,2)">Edit</a>
+				<a class="btn save_edited_listnote"  id="{{ 'save_edited_listnote-' + $index }}" ng-click="self.saveEditedNote(listnote,list,LIndex)" >Save</a>
 			</div>
 		
 		</div>	
