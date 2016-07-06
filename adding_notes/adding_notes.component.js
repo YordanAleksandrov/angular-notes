@@ -66,7 +66,8 @@ angular.
 						this.message="";
 						$rootScope.selectTab(1);
 						$('#search_note_input').css("display","inline");
-
+						$('#search_input_btn').css("display","inline-block");
+						
 					}
 				}else {
 					
@@ -100,6 +101,7 @@ angular.
 						this.todo="";
 						$rootScope.selectTab(2);
 						$('#search_list_note_input').css("display","block");
+						$('#search_input_btn_l').css("display","inline-block");
 						
 					};
 				}else{

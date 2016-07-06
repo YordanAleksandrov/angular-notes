@@ -7,32 +7,33 @@ body{
 	
 	color:#fff;
 
-	
 }
 
 .content{
 	
-	width:60%;
+	float: none;
 	height:auto;
-	margin:0 auto;
+	margin:0 auto!important;
+	padding:0 !important;
 	
 }
 
 .header{
 	
-	width:100%;
 	height:50px;
 	text-align:center;
 	background-color:#6699ff;
 	float:left;
+	margin:0!important;
+	padding:0!important;
 
 }
 
 .content_body{
 	
-	width:100%;
 	height:auto;
 	background-color:#e6eeff;
+	
 }
 .header h1{
 	
@@ -43,23 +44,26 @@ body{
 
 .menu_left{
 	
-	width:50%;
 	height:auto;
-	min-height:350px;
+	min-height:360px;
 	float:left;
 	background-color:#abc1ed;
 	padding-bottom:20px;
 	
 }
 
+.noListNotes{
+	
+	padding-top:50px;
+	
+}
 
 .notes_right{
 	
-	width:50%;
 	height:auto;
 	float:left;
 	background-color:#6699ff;
-	min-height:370px;
+	min-height:360px;
 	
 }
 
@@ -70,26 +74,29 @@ body{
 	float:left;
 	background-color:#99bbff;
 	box-shadow:none;
-	border: 1px solid #ccddff;
-		
+	border: 2px solid #e6f2ff;
+	text-transform:uppercase;
+	padding:3px;
+	
 }
 
 .tabs{
 	
-	width:51.2%;
 	height:35px;
 	display:block;
 	float:left;
 	background-color:#e6f2ff;
 	color:#1a8cff;
 	box-shadow:none;
-	position: relative;	
+	position: relative;
+	padding-top:5px;	
 	text-align:center;
-	font-size:24px;
+	font-size:1.4em;
 	text-transform:uppercase;
 	border-radius:15px 15px 0px 0px;
 	text-decoration:none;
 	border-top:1px solid #e6f2ff;
+	border-left:1px solid #6699ff;
 	
 }
 .tabs:hover{
@@ -143,6 +150,12 @@ body{
 	padding-top:60px;
 	
  }
+#buttons_container{
+	
+	width:90%;
+	margin:15px auto;
+	
+}
 
  .form_inputs{
 	 
@@ -162,7 +175,7 @@ body{
  #save_text_note{
 	 
 	float:right;
-	margin:10px 20px;
+	
  }
  
  .form_stuff textarea{
@@ -209,21 +222,21 @@ body{
  
 .form_submits{
 	 
-	height:40px;	
-
+	height:45px;	
+	width:45%;
+	
  }
  
 #add_todo{
 	
 	float:left;
-	width:120px;
-	margin-left:20px;
+	
 }
 
 #save_list_note{
 	
 	float:right;
-	margin-right:20px;
+
 }
 
 #preview{
@@ -268,13 +281,14 @@ body{
 .date{
 	
 	float:left;
+	width:100%;
 }
 
 .noNotes{
 	
 	text-align:center;
 	font-family:"Palatino Linotype", "Book Antiqua", Palatino, serif;
-	font-size:34px;
+	font-size:2.4em;
 	
 }
 
@@ -283,7 +297,7 @@ body{
 	color:#000;
 	width:150px;
 	display:none;
-	font-size:24px;
+	font-size:1.7em;
 	margin:2px;
 	
 }
@@ -332,8 +346,34 @@ body{
 	padding-top:50px;
 
 }
+
 .search_notes input{
 
 	color:#000;
 	
+}	
+
+.col-lg-6{
+	
+	padding:0!important;
+	margin:0!important;
+	
+}
+
+.clear_search{
+	
+	padding:2px 6px;
+	background-color:#808080;
+	border:none;
+	box-shadow:none;
+	border-radius:5px;
+	color:#1affff;
+	
+}
+
+.clear_search:hover{
+	
+	background-color:#fff;
+	color:#808080;
+
 }

@@ -50,19 +50,22 @@ angular.
 			this.list_notes_right = $('#listnotes_right');
 			var listnotes=[];
 			self.list = [];
-				
+			
 			this.check = function(notes_index){
 				
 				if($rootScope.notes.length ==0 && notes_index ==1){
 					
 					$('#search_note_input').css("display","none");
+					$('#search_input_btn').css("display","none");
 					this.notes_right.append("<p class=' noNotes noNote'>No saved notes</p>");
 						
 				}
 				else if($rootScope.listNotes.length == 0 && notes_index ==2){
 					
-					this.list_notes_right.append("<p class=' noNotes noListNotes'>No saved notes</p>");
 					$('#search_list_note_input').css("display","none");
+					$('#search_input_btn_l').css("display","none");
+					this.list_notes_right.append("<p class=' noNotes noListNotes'>No saved notes</p>");
+					
 				}
 				
 			};
@@ -85,16 +88,27 @@ angular.
 				
 			};
 			
-			this.clearSearch = function(searchBox){
-				console.log(searchBox);
+			this.clearSearchNote = function(searchBox){
+
 				if (searchBox !== undefined){
 						
-						 return searchBox = '';
-						 
+					this.queryNotes = '';
+					this.filterNotes(this.queryNotes);	
+					
 				}
-				else  return searchBox = '';
 				
-			}
+			};
+			
+			this.clearSearchLNote = function(searchBox){
+
+				if (searchBox !== undefined){
+						
+					this.queryLNotes = '';
+					this.filterLNotes(this.queryLNotes);	
+					
+				}
+				
+			};
 			
 			this.filterNotes = function(filter){
 				
