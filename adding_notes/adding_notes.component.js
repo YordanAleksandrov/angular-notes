@@ -1,3 +1,4 @@
+(function() {
 'use strict';
 
 angular.
@@ -6,9 +7,12 @@ angular.
 		
 		templateUrl:'adding_notes/adding_notes.template.html',
 		controllerAs: 'self',
-		controller:function contentController($http,$filter,$rootScope) {
+		controller:['tabSelection','$http','$filter','getNotesFactory', function contentController(tabSelection,$http,$filter,getNotesFactory) {
 			
-			this.tab = 1;
+			var self=this;
+			self.tab= tabSelection.tab;
+			self.isSelected= tabSelection.isSelected;
+			self.selectTab= tabSelection.selectTab;
 			this.error_list = angular.element(error_list);
 			this.error_note = angular.element(error_note);
 			this.preview_list = angular.element(preview_list);
@@ -16,17 +20,38 @@ angular.
 			this.date = $filter('date')(new Date(), 'dd, MMMM yyyy');
 			this.time = $filter('date')(new Date(), 'HH:mm');
 			
-			this.selectTab = function(setTab){
+			this.init = function (){
 				
-				this.tab = setTab;
+				self.refreshNote();
+				self.refreshLNote();
 				
 			};
 			
-			this.isSelected = function(checkTab){
+			self.refreshNote = function(){
 				
-				return this.tab === checkTab;
+			getNotesFactory.refreshNotes().then(function(){
+					
+					self.note="";
+					
+				},function(err){
+					
+					
+				});
 				
 			};
+			
+			self.refreshLNote = function(){	
+			
+				getNotesFactory.refreshLNotes().then(function(res){
+					
+					self.listnote="";
+					
+				},function(err){
+					
+					
+				});
+			};
+			
 			this.addTodo = function(newTodo){
 				
 				if(newTodo === undefined || newTodo === ""){
@@ -47,28 +72,33 @@ angular.
 
 			this.saveNote = function(){
 				
+				
 				if($('.noNote').length == 0){
 					
-					if((this.title === undefined || this.title === "") || (this.message === undefined || this.message === "")){
+						if(self.note ==undefined || self.note.message =='' || self.note.head ==undefined || self.note.head == '' || self.note.message == undefined){
 						
-						this.error_note.css("visibility","visible");
+							this.error_note.css("visibility","visible");
 						
-					}else{
-						
-						this.error_note.css("visibility","hidden");
-						$rootScope.notes = $rootScope.notes.concat([
-						
-							{head :this.title ,message :this.message ,dateSaved:this.time +' / '+this.date}
+						}else{
 							
-						]);
-						
-						this.title="";
-						this.message="";
-						$rootScope.selectTab(1);
-						$('#search_note_input').css("display","inline");
-
-					}
-				}else {
+							this.error_note.css("visibility","hidden");
+							this.note.date = this.time+' / '+this.date;
+							getNotesFactory.saveNote(this.note);
+							//console.log(getNotesFactory.noteDb);
+							/*$http.post('/notes',this.note).success(function(response){
+								
+								console.log("saved successful");
+								console.log(getNotesFactory.noteDb);
+								self.refreshNote();
+								console.log(getNotesFactory.noteDb);
+							});*/
+							
+							self.note="";
+							self.selectTab(1);
+							$('#search_note_input').css("display","inline");
+							$('#search_input_btn').css("display","inline-block");
+						}
+					}else{
 					
 					$('.noNote').remove();
 					this.saveNote();
@@ -80,37 +110,38 @@ angular.
 				
 				if($('.noListNotes').length == 0){
 					
-					if(this.title2 === undefined || this.title2 === ""){
-						
+					if( self.listnote == undefined || self.listnote.head === undefined || self.listnote.head === ""){
+					
 						this.error_list.css("visibility","visible");
-						
+					
 					}else{
 						
 						this.error_list.css("visibility","hidden");
-						
-						$rootScope.listNotes = $rootScope.listNotes.concat([
-						
-							{head :this.title2 , message:this.list , dateSaved:this.time +' / '+this.date}
-							
-						]);
-						
+						this.error_note.css("visibility","hidden");	
+						this.listnote.date = this.time+' / '+this.date;
+						this.listnote.message=this.list;
+						getNotesFactory.saveLNote(this.listnote);
+						self.refreshLNote();
+						self.listnote="";
 						this.preview_list.html("");
 						this.list = [];
 						this.title2 = "";	
 						this.todo="";
-						$rootScope.selectTab(2);
+						self.selectTab(2);
 						$('#search_list_note_input').css("display","block");
+						$('#search_input_btn_l').css("display","inline-block");
 						
-					};
+					}
 				}else{
-					
 					
 					$('.noListNotes').remove();
 					this.saveListNote();
 				}
 				
 			};
-
-		}
+			this.init();
+		}]
 	
 	});
+	
+})();
