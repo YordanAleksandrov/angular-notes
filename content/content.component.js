@@ -7,44 +7,44 @@ angular.
 		
 		templateUrl:'content/content.template.html',
 		controllerAs: 'self',
-		controller:['tabSelection','$http','getNotesFactory', function contentController(tabSelection,$http,getNotesFactory) {
+		controller:['tabSelection','$http','getNotesFactory','$interval','$q', function contentController(tabSelection,$http,getNotesFactory,$interval,$q) {
 			
 			var self=this;
+			
+			self.list = [];
+			this.header_text = 'Notes App';
+			this.orderProp = 'dateSaved';
+			this.tab = tabSelection.tab;
+			this.isSelected = tabSelection.isSelected;
+			this.selectTab = tabSelection.selectTab;
+			self.noteDb = getNotesFactory.noteDb;
+			self.notelistDb = getNotesFactory.notelistDb;
+			
 			this.init = function (){
 				
 				self.refreshNote();
 				self.refreshLNote();
 				
 			};
-			self.list = [];
-			this.header_text = 'Notes App';
-			this.orderProp = 'dateSaved';
-			this.tab = tabSelection.tab;
-			
-			this.isSelected = tabSelection.isSelected;
-
-			
-			this.selectTab= tabSelection.selectTab;
-
-			
 			self.refreshNote = function(){
-				
-				getNotesFactory.refreshNotes().then(function(){
+				var defer = $q.defer();
+				getNotesFactory.refreshNotes().then(function(res){
 					
-					self.noteDb = getNotesFactory.noteDb;
+					self.noteDb = res;
+					defer.resolve(res);
 					
 				},function(err){
 					
 					
 				});
-				
+				return defer.promise;
 			};
 			
 			self.refreshLNote = function(){
 				
 				getNotesFactory.refreshLNotes().then(function(res){
 					
-					self.notelistDb = getNotesFactory.notelistDb;
+					self.notelistDb = res;
 					
 				},function(err){
 					
@@ -56,8 +56,8 @@ angular.
 			this.removeNote = function(note,index,searchBox) {
 
 				if(typeof note.message == 'string'){
-
-					$http.delete('/notes/'+note._id).success(function(response){
+					
+					getNotesFactory.removeNote(note).then(function(){
 						
 						for(var i=0;i<self.noteDb.length;i++){
 							
@@ -68,22 +68,26 @@ angular.
 							}
 						};
 						self.refreshNote();
-						
+
 					});
 
 				}else {
 					
-					$http.delete('/listnotes/'+note._id).success(function(response){
+					getNotesFactory.removeLNote(note).then(function(){
 						
-						for(var i=0;i<self.noteDb.length;i++){
+						for(var i=0;i<self.notelistDb.length;i++){
 							
-							if(self.noteDb[i]._id == note._id){
+							if(self.notelistDb[i]._id == note._id){
 								
-								self.noteDb.splice(index,1);
+								self.notelistDb.splice(index,1);
 								
 							}
 						};
-						self.refreshLNote();
+						getNotesFactory.refreshNotes().then(function(){
+							
+							
+							
+						});
 						
 					});
 				}
@@ -209,10 +213,13 @@ angular.
 				if(typeof note.message == 'string'){
 					
 					var index = self.noteDb.indexOf(note);
-					$http.put('/notes/'+note._id,note).success(function(response){
-	
+					
+					getNotesFactory.saveEditedNote(note).then(function(){
+						
+						self.refreshNote();
+						
 					});
-						this.refreshNote();
+						
 						this.editNoteTest(index,1);
 						
 				}else {
@@ -221,10 +228,12 @@ angular.
 					var list =this.getList(parentIndex);
 					note.message = list;
 					
-					$http.put('/listnotes/'+note._id,note).success(function(response){
-	
+					getNotesFactory.saveEditedLNote(note).then(function(){
+						
+						self.refreshLNote();
+						
 					});
-					this.refreshLNote();
+
 					this.editNoteTest(index,2);
 					
 					for(var i=0; i< $('.list_el-'+parentIndex).length; i++){
@@ -280,6 +289,7 @@ angular.
 					
 			};
 			this.init();
+			//$interval(this.init, 100);
 		}]
 	
 	});

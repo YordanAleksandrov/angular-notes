@@ -7,7 +7,6 @@
 		<input  id="head" name="head" class="form_inputs" type="text" ng-model="self.note.head" placeholder="Note title"/>
 		<textarea  id="note_text" placeholder="Enter your note text here...." ng-model="self.note.message"></textarea>
 		<div class="error" id="error_note"> <p class='error_message' id='error_message'>You didn't add a title or description to the note</p></div>
-		<p ng-model="self.note.date"></p>
 		
 		<button id="save_text_note" class="buttons form_submits" ng-click="self.saveNote()">Save your note</button>
 		
@@ -19,7 +18,7 @@
 		<div class="preview" id="preview"><ul id="preview_list"></ul></div>
 		<div class="error" id="error_list"> <p class='error_message' id='error_message2'>You didn't add title or something to do</p></div>
 		<input  id="input_list_el" name="input_list_el" class="form_inputs" type="text" ng-model="self.todo" placeholder="Type the new Todo here..."/>
-		<p ng-model="self.listnote.date"></p>
+		
 		<div id="buttons_container">
 			<button id="save_list_note" class="buttons form_submits" ng-click="self.saveListNote()">Save your Todo List</button>
 			<button id="add_todo" class="buttons form_submits" ng-click="self.addTodo(self.todo)">Add new Todo</button>

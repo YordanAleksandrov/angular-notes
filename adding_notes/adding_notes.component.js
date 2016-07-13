@@ -7,9 +7,11 @@ angular.
 		
 		templateUrl:'adding_notes/adding_notes.template.html',
 		controllerAs: 'self',
-		controller:['tabSelection','$http','$filter','getNotesFactory', function contentController(tabSelection,$http,$filter,getNotesFactory) {
+		controller:['tabSelection','$http','$filter','getNotesFactory','$interval','$q', function contentController(tabSelection,$http,$filter,getNotesFactory,$interval,$q) {
 			
 			var self=this;
+			
+			
 			self.tab= tabSelection.tab;
 			self.isSelected= tabSelection.isSelected;
 			self.selectTab= tabSelection.selectTab;
@@ -29,25 +31,32 @@ angular.
 			
 			self.refreshNote = function(){
 				
-			getNotesFactory.refreshNotes().then(function(){
+				var defer = $q.defer();
+				getNotesFactory.refreshNotes().then(function(res){
 					
+					defer.resolve(res);
 					self.note="";
+					//self.test=res;
+					
 					
 				},function(err){
 					
+					console.log('Whoops');
 					
 				});
-				
+				return defer.promise;
 			};
 			
 			self.refreshLNote = function(){	
-			
+				
+				
 				getNotesFactory.refreshLNotes().then(function(res){
 					
 					self.listnote="";
 					
 				},function(err){
 					
+					console.log('Whoops');
 					
 				});
 			};
@@ -75,7 +84,7 @@ angular.
 				
 				if($('.noNote').length == 0){
 					
-						if(self.note ==undefined || self.note.message =='' || self.note.head ==undefined || self.note.head == '' || self.note.message == undefined){
+						if(self.note == undefined || self.note.message == '' || self.note.head == undefined || self.note.head == '' || self.note.message == undefined){
 						
 							this.error_note.css("visibility","visible");
 						
@@ -83,20 +92,20 @@ angular.
 							
 							this.error_note.css("visibility","hidden");
 							this.note.date = this.time+' / '+this.date;
-							getNotesFactory.saveNote(this.note);
-							//console.log(getNotesFactory.noteDb);
-							/*$http.post('/notes',this.note).success(function(response){
-								
-								console.log("saved successful");
-								console.log(getNotesFactory.noteDb);
-								self.refreshNote();
-								console.log(getNotesFactory.noteDb);
-							});*/
 							
-							self.note="";
-							self.selectTab(1);
-							$('#search_note_input').css("display","inline");
-							$('#search_input_btn').css("display","inline-block");
+							getNotesFactory.saveNote(this.note).then(function(){
+								
+								self.refreshNote().then(function(){
+									
+									console.log(getNotesFactory.noteDb);
+									self.note={};
+									$('#search_note_input').css("display","inline");
+									$('#search_input_btn').css("display","inline-block");
+									
+								});
+
+							});
+							
 						}
 					}else{
 					
@@ -120,14 +129,17 @@ angular.
 						this.error_note.css("visibility","hidden");	
 						this.listnote.date = this.time+' / '+this.date;
 						this.listnote.message=this.list;
-						getNotesFactory.saveLNote(this.listnote);
-						self.refreshLNote();
-						self.listnote="";
+						
+						getNotesFactory.saveLNote(this.listnote).then(function(){
+							
+							self.refreshLNote();
+							
+						});
+						
 						this.preview_list.html("");
 						this.list = [];
 						this.title2 = "";	
 						this.todo="";
-						self.selectTab(2);
 						$('#search_list_note_input').css("display","block");
 						$('#search_input_btn_l').css("display","inline-block");
 						
@@ -140,6 +152,7 @@ angular.
 				
 			};
 			this.init();
+
 		}]
 	
 	});
