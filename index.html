@@ -2,6 +2,7 @@
 <html ng-app="notes">
 	<head>
 		<meta charset="UTF-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
 		<link rel="stylesheet" type="text/css" href="css/style.css"/>
 		<script src="bower_components/angular/angular.js"></script>
@@ -9,6 +10,8 @@
 		<script src="bower_components/angular-route/angular-route.js"></script>
 		<script src="bower_components/jquery/dist/jquery.js"></script>
 		<script src="app.module.js"></script>
+		<script src="core/app.module.tab.service.js"></script>
+		<script src="core/app.module.factory.js"></script>
 		<script src="content/content.module.js"></script>
 		<script src="content/content.component.js"></script>
 		<script src="adding_notes/adding_notes.module.js"></script>
@@ -16,7 +19,7 @@
 	</head>
 	<body>
 	
-		<content-div></content-div>
+		<content-div ></content-div>
 		
 	</body>
 </html>
