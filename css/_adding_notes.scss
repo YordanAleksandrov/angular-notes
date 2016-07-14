@@ -1,0 +1,123 @@
+@import 'colors';
+
+$almost:90%;
+	
+.form_stuff{
+	 
+	width:$almost;
+	height:auto;
+	margin:0 auto;
+	padding-top:60px;
+	textarea{
+	 
+		width:$almost;
+		height:150px;
+		margin:5px;
+		color:#000;
+	
+	}
+}
+
+.form_inputs{
+	 
+	width:$almost;
+	display:block;
+	height:30px;
+	margin:15px auto;
+	color:$black;
+	
+}
+
+#note_text{
+	 
+	display:block;
+	margin:0 auto;
+	
+}
+
+.error{
+	
+	background-color:$red;
+	width:$almost;
+	margin:0 auto;
+	height:20px;
+	padding-left:5px;
+	visibility:hidden;
+
+}
+
+.buttons{
+	
+	width:50%;
+	height:60px;
+	float:left;
+	background-color:$lightblue;
+	box-shadow:none;
+	border: 2px solid $whiteblue;
+	text-transform:uppercase;
+	padding:3px;
+	&:hover{
+	
+		border: 2px solid #fff;
+	
+	}
+	
+}
+
+#buttons_container{
+	
+	width:$almost;
+	margin:15px auto;
+	
+}
+
+.active{
+	
+	background-color:$whiteblue;
+	color:$base_text_color;
+	
+}
+
+.form_submits{
+	 
+	height:45px;	
+	width:45%;
+	
+}
+
+#add_todo{
+	
+	float:left;
+	
+}
+
+#save_list_note{
+	
+	float:right;
+
+}
+
+#save_text_note{
+	 
+	float:right;
+	
+}
+
+#preview{
+	
+	white-space: pre-wrap;
+	padding:5px 20px;
+	background-color:$white;
+	color:$black;
+	min-height:100px;
+	width:$almost;
+	margin:0 auto;
+	
+}
+
+.date{
+	
+	float:left;
+	width:100%;
+	
+}

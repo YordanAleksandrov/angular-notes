@@ -2,21 +2,42 @@
 <html ng-app="notes">
 	<head>
 		<meta charset="UTF-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
-		<link rel="stylesheet" type="text/css" href="css/style.css"/>
+		<link rel="stylesheet" type="text/css" href="css/master.css"/>
 		<script src="bower_components/angular/angular.js"></script>
 		<script src="bower_components/angular-animate/angular-animate.js"></script>
 		<script src="bower_components/angular-route/angular-route.js"></script>
 		<script src="bower_components/jquery/dist/jquery.js"></script>
 		<script src="app.module.js"></script>
+		<script src="core/app.module.tab.service.js"></script>
+		<script src="core/app.module.factory.js"></script>
 		<script src="content/content.module.js"></script>
 		<script src="content/content.component.js"></script>
 		<script src="adding_notes/adding_notes.module.js"></script>
 		<script src="adding_notes/adding_notes.component.js"></script>
 	</head>
 	<body>
+		<div class="container">
+
+			<div class="row">
 	
-		<content-div></content-div>
+				<div class="content col-lg-8 row">
 		
+					<div class="header col-xs-12">
+						<h1>Notes App</h1>
+					</div>
+			
+					<div class="content_body ">
+					
+						<content-div ></content-div>
+						
+					</div>
+			
+				</div>
+		
+			</div>
+	
+		</div>
 	</body>
 </html>

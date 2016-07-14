@@ -1,0 +1,45 @@
+@import 'colors';
+
+*{
+	margin:0;
+	padding:0;
+	
+}
+body{
+	
+	color:$white;
+
+}
+
+.content{
+	
+	float: none;
+	height:auto;
+	margin:0 auto;
+	padding:0;
+	
+}
+
+.header{
+	
+	height:50px;
+	text-align:center;
+	background:$bluish;
+	float:left;
+	& h1{
+	
+		margin:0;
+	
+	}
+}
+
+
+.content_body{
+	
+	height:auto;
+	background:$content_body_color;
+	
+}
+
+@import 'content';
+@import 'adding_notes';

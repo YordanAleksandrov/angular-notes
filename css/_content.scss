@@ -1,0 +1,230 @@
+@import 'colors';
+
+$min_height:360px;
+$nothing_font:"Palatino Linotype", "Book Antiqua", Palatino, serif;
+
+.menu_left{
+	
+	height:auto;
+	min-height:$min_height;
+	float:left;
+	background-color:$another_blue_shade;
+	padding-bottom:20px;
+	
+}
+
+.notes_right{
+	
+	height:auto;
+	float:left;
+	background-color:$bluish;
+	min-height:$min_height;
+	
+}
+.noListNotes{
+	
+	padding-top:50px;
+	
+}
+
+.noNotes{
+	
+	text-align:center;
+	font:{
+	
+		family:$nothing_font;
+		size:2.4em;
+	}
+
+}
+
+.tabs{
+	
+	height:35px;
+	display:block;
+	float:left;
+	background-color:$whiteblue;
+	color:$base_text_color;
+	box-shadow:none;
+	position: relative;
+	padding-top:5px;	
+	font-size:1.4em;
+	text:{
+	
+		align:center;
+		decoration:none;
+		transform:uppercase;
+	
+	}
+	border:{
+	
+		radius:15px 15px 0px 0px;
+		top:1px solid $whiteblue;
+		left:1px solid $bluish;
+	
+	}
+	&:hover{
+	
+		text-decoration:none;
+		cursor:pointer;
+		color:inherit;
+		
+	}
+}
+
+.selectTab{
+	
+	background-color:$bluish;
+	color:$white;
+	z-index:1;
+
+}
+
+#listnote_tab{
+	
+	margin-left:-10px;
+	
+}
+
+#note_tab{
+	
+	border-radius:0px 15px 0px 0px;
+	
+}
+
+ 
+.presentation{
+	 
+	width:95%;
+	height: auto;
+	margin:30px auto;
+	background-color:transparent;
+	border:1px solid $grey;
+	padding:10px;
+	overflow:auto;
+	& h1{
+	 
+		margin:3px;
+	
+	}
+	& p:last-child{
+	 
+		margin-left:40px;
+	
+	}
+
+}
+
+.first_p{
+	
+	border:{
+	
+		top:1px solid grey;
+		bottom:1px solid grey;
+	
+	}
+	padding:5px 15px;
+	&2{
+	
+		display:none;
+		color:#000;
+
+	}
+}
+
+.btn{
+	
+	background-color:$grey;
+	color:$aqua;
+	float:right;
+	width:70px;
+	margin:3px;
+	display:block;
+	&:hover{
+	
+		background-color:$white;
+
+	}
+}
+.save{
+
+	&_edited_note ,&_edited_listnote{
+
+		display:none;
+		
+	}
+}
+
+.edit_head{
+	
+	color:$black;
+	width:150px;
+	display:none;
+	font-size:1.7em;
+	margin:2px;
+	
+}
+
+.notdone{
+	
+	list-style-image:url('../img/x.png');
+	
+}
+
+.done{
+	
+	text-decoration: line-through;
+	list-style-image:url('../img/tick.png');
+	
+}
+
+
+
+.input_lists{
+	
+	margin:2px;
+	
+}
+
+.edit_msg{
+	
+	color:$black;
+	display:none;
+	
+}
+
+.search_notes{
+
+	width:100%;
+	height:20%;
+	text-align:center;
+	padding-top:50px;
+	& input{
+
+		color:$black;
+	
+	}	
+}
+
+.col-lg-6{
+	
+	padding:0!important;
+	margin:0!important;
+	
+}
+
+.clear_search{
+	
+	padding:2px 6px;
+	background-color:$grey;
+	border:none;
+	box-shadow:none;
+	border-radius:5px;
+	color:$aqua;
+	& :hover{
+	
+		background-color:$white;
+		color:$grey;
+
+	}
+}

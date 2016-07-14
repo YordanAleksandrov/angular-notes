@@ -1,0 +1,233 @@
+* {
+  margin: 0;
+  padding: 0; }
+
+body {
+  color: #fff; }
+
+.content {
+  float: none;
+  height: auto;
+  margin: 0 auto;
+  padding: 0; }
+
+.header {
+  height: 50px;
+  text-align: center;
+  background: #6699ff;
+  float: left; }
+  .header h1 {
+    margin: 0; }
+
+.content_body {
+  height: auto;
+  background: #e6eeff; }
+
+.menu_left {
+  height: auto;
+  min-height: 360px;
+  float: left;
+  background-color: #abc1ed;
+  padding-bottom: 20px; }
+
+.notes_right {
+  height: auto;
+  float: left;
+  background-color: #6699ff;
+  min-height: 360px; }
+
+.noListNotes {
+  padding-top: 50px; }
+
+.noNotes {
+  text-align: center;
+  font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+  font-size: 2.4em; }
+
+.tabs {
+  height: 35px;
+  display: block;
+  float: left;
+  background-color: #e6f2ff;
+  color: #1a8cff;
+  box-shadow: none;
+  position: relative;
+  padding-top: 5px;
+  font-size: 1.4em;
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+  border-radius: 15px 15px 0px 0px;
+  border-top: 1px solid #e6f2ff;
+  border-left: 1px solid #6699ff; }
+  .tabs:hover {
+    text-decoration: none;
+    cursor: pointer;
+    color: inherit; }
+
+.selectTab {
+  background-color: #6699ff;
+  color: #fff;
+  z-index: 1; }
+
+#listnote_tab {
+  margin-left: -10px; }
+
+#note_tab {
+  border-radius: 0px 15px 0px 0px; }
+
+.presentation {
+  width: 95%;
+  height: auto;
+  margin: 30px auto;
+  background-color: transparent;
+  border: 1px solid #808080;
+  padding: 10px;
+  overflow: auto; }
+  .presentation h1 {
+    margin: 3px; }
+  .presentation p:last-child {
+    margin-left: 40px; }
+
+.first_p {
+  border-top: 1px solid grey;
+  border-bottom: 1px solid grey;
+  padding: 5px 15px; }
+  .first_p2 {
+    display: none;
+    color: #000; }
+
+.btn {
+  background-color: #808080;
+  color: #1affff;
+  float: right;
+  width: 70px;
+  margin: 3px;
+  display: block; }
+  .btn:hover {
+    background-color: #fff; }
+
+.save_edited_note, .save_edited_listnote {
+  display: none; }
+
+.edit_head {
+  color: #000;
+  width: 150px;
+  display: none;
+  font-size: 1.7em;
+  margin: 2px; }
+
+.notdone {
+  list-style-image: url("../img/x.png"); }
+
+.done {
+  text-decoration: line-through;
+  list-style-image: url("../img/tick.png"); }
+
+.input_lists {
+  margin: 2px; }
+
+.edit_msg {
+  color: #000;
+  display: none; }
+
+.search_notes {
+  width: 100%;
+  height: 20%;
+  text-align: center;
+  padding-top: 50px; }
+  .search_notes input {
+    color: #000; }
+
+.col-lg-6 {
+  padding: 0 !important;
+  margin: 0 !important; }
+
+.clear_search {
+  padding: 2px 6px;
+  background-color: #808080;
+  border: none;
+  box-shadow: none;
+  border-radius: 5px;
+  color: #1affff; }
+  .clear_search :hover {
+    background-color: #fff;
+    color: #808080; }
+
+.form_stuff {
+  width: 90%;
+  height: auto;
+  margin: 0 auto;
+  padding-top: 60px; }
+  .form_stuff textarea {
+    width: 90%;
+    height: 150px;
+    margin: 5px;
+    color: #000; }
+
+.form_inputs {
+  width: 90%;
+  display: block;
+  height: 30px;
+  margin: 15px auto;
+  color: #000; }
+
+#note_text {
+  display: block;
+  margin: 0 auto; }
+
+.error {
+  background-color: #f00;
+  width: 90%;
+  margin: 0 auto;
+  height: 20px;
+  padding-left: 5px;
+  visibility: hidden; }
+
+.buttons {
+  width: 50%;
+  height: 60px;
+  float: left;
+  background-color: #99bbff;
+  box-shadow: none;
+  border: 2px solid #e6f2ff;
+  text-transform: uppercase;
+  padding: 3px; }
+  .buttons:hover {
+    border: 2px solid #fff; }
+
+#buttons_container {
+  width: 90%;
+  margin: 15px auto; }
+
+.active {
+  background-color: #e6f2ff;
+  color: #1a8cff; }
+
+.form_submits {
+  height: 45px;
+  width: 45%; }
+
+#add_todo {
+  float: left; }
+
+#save_list_note {
+  float: right; }
+
+#save_text_note {
+  float: right; }
+
+#preview {
+  white-space: pre-wrap;
+  padding: 5px 20px;
+  background-color: #fff;
+  color: #000;
+  min-height: 100px;
+  width: 90%;
+  margin: 0 auto; }
+
+.date {
+  float: left;
+  width: 100%; }
+
+/*# sourceMappingURL=master.css.map */

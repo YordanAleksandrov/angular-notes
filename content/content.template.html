@@ -1,28 +1,70 @@
-<div class="content">
-	<div class="header">
-		<h1>{{self.header_text}}</h1>
-	</div>
-	<div class="content_body">
+<div class="menu_left col-lg-6  col-xs-12" id="test_disapear">
+	
+	<adding-notes></adding-notes>
+	
+</div>	
+
+<div class="notes_right col-lg-6  col-xs-12" id="right" >
+
+	<a id="note_tab" ng-class="{ selectTab: self.isSelected(1)}" class="tabs col-xs-6" ng-click=" self.selectTab(1)">Notes</a>
+	<a id="listnote_tab" ng-class="{ selectTab: self.isSelected(2)}" class="tabs col-xs-6" ng-click=" self.selectTab(2)">List Notes</a>
+
+	<div class="notes_right_tabs" id="notes_right" ng-show="self.isSelected(1)">
+		
+		<div class="search_notes" id="search_note_div">
+		
+			<input placeholder="Search Notes by Title" id="search_note_input"   ng-model="self.queryNotes" ng-keyup = "self.filterNotes(self.queryNotes)"/>
+			<button class="clear_search " id="search_input_btn" ng-click="self.clearSearchNote(self.queryNotes)">Clear</button>
+			
+		</div>
 		
 		
-		<div class="menu_left">
+		<div class="presentation note"  id="{{'note_body-' + NIndex}}" ng-repeat="(NIndex ,note) in $root.noteDb  track by $index ">
 			
-			<adding-notes></adding-notes>
+			<h1  id="{{ 'note_head-' + $index }}" >{{note.head}}</h1>
+			<input class="edit_head" id="{{ 'edit_head-' + $index }}" ng-model="note.head"/>
 			
-		</div>	
-		<div class="notes_right">
-		<!--{{self.notes_text.notesWithText[0].message}}
-		<p>-  {{self.time}}  / {{self.date}}.</p>
-		-->
-			<div class="presentation" ng-repeat="note in $root.notes">
+			<p class="first_p" id="{{ 'first_p-' + $index }}">{{note.message}}</p>
+			<textarea  class="edit_msg" id="{{ 'edit_msg-' + $index }}"  ng-model="note.message"></textarea>
+			<p class="date">-  {{note.date}}.</p>
+
+			<a class="btn edit_note" id="delete_note" ng-click="self.removeNote(note,$index)">Delete</a>
+			<a class="btn edit_note"  id="{{ 'edit_note-' + $index }}"  ng-click="self.editNoteTest($index,1)" >Edit</a>
+			<a class="btn save_edited_note" id="{{ 'save_edited_note-' + $index }}"  ng-click="self.saveEditedNote(note)" >Save</a>
 			
-				<h1>{{note.head}}</h1>
-				<p>{{note.message}}</p>
-				<p>-  {{note.dateSaved}}.</p>
+		</div>
+			
+	</div>	
+	
+	<div class="notes_right_tabs " id="listnotes_right" ng-show="self.isSelected(2)">
+		
+			<div class="search_notes"  id="search_list_note_input">
+			
+				<input placeholder="Search List Notes by Title" ng-model="self.queryLNotes" ng-keyup = "self.filterLNotes(self.queryLNotes)" />
+				<button class="clear_search " id="search_input_btn_l" ng-click="self.clearSearchLNote(self.queryLNotes)">Clear</button>
 			
 			</div>
-		
-		</div>	
-		
-	</div>	
-</div>
+			
+			<div class="presentation Lnote" id="{{'Lnote_body-' + LIndex}}" ng-repeat="(LIndex,listnote) in $root.notelistDb  track by $index " >
+			
+				<h1 id="{{ 'listnote_head-' + $index }}">{{listnote.head}}</h1>
+				<input class="edit_head" id="{{ 'edit_listhead-' + $index }}"  ng-model="listnote.head"/>
+				<ul class="first_p"  id="{{ 'notes_list-' + $index }}">
+					<li ng-repeat="list in listnote.message track by $index" id="{{ 'list_el-' + $index +'-'+LIndex}}" class="{{ 'list_el-' + LIndex}} notdone" ng-model="self.list" ng-click="self.checked($index,LIndex)">{{list}} </li>
+				</ul>
+				
+				<ul class="first_p2" id="{{ 'notes_list_edit-' + $index }}">
+					<li select multiple='true' ng-repeat="list in listnote.message track by $index"  id="{{ 'every_list-' + $index}}"><input class="{{ 'every_list_in_note-' + LIndex}} input_lists" id="{{ 'edit_list-' + $index }}"  ng-model="list" /></li>
+				</ul>
+				
+				<p class="date">-  {{listnote.date}}.</p>
+				<a class="btn" ng-click="self.removeNote(listnote,$index,self.queryLNotes)">Delete</a>
+				<a class="btn" id="{{ 'edit_listnote-' + $index }}" ng-click="self.editNoteTest($index,2)">Edit</a>
+				<a class="btn save_edited_listnote"  id="{{ 'save_edited_listnote-' + $index }}" ng-click="self.saveEditedNote(listnote,list,LIndex)" >Save</a>
+			
+			</div>
+			
+	</div>
+	
+</div>	
+
