@@ -87,36 +87,37 @@ angular.
 			};
 
 			this.saveNote = function(){
+					
+				if(self.note == undefined || self.note.message == '' || self.note.head == undefined || self.note.head == '' || self.note.message == undefined){
 				
-				if($('.noNote').length == 0){
-					
-						if(self.note == undefined || self.note.message == '' || self.note.head == undefined || self.note.head == '' || self.note.message == undefined){
-						
-							this.error_note.css("visibility","visible");
-						
-						}else{
-							
-							this.error_note.css("visibility","hidden");
-							this.note.date = this.time+' / '+this.date;
-							
-							getNotesFactory.saveNote(this.note).then(function(){
-								
-								self.refreshNote().then(function(res){
-									
-									self.note={};
-									$('#search_note_input').css("display","inline");
-									$('#search_input_btn').css("display","inline-block");
-									
-								});
+					this.error_note.css("visibility","visible");
+				
+				}else{
 
-							});
+					this.error_note.css("visibility","hidden");
+					
+					if($('.noNote').length == 0){
 							
-						}
+						this.note.date = this.time+' / '+this.date;
+						
+						getNotesFactory.saveNote(this.note).then(function(){
+							
+							self.refreshNote().then(function(res){
+								
+								self.note={};
+								$('#search_note_input').css("display","inline");
+								$('#search_input_btn').css("display","inline-block");
+								
+							});
+
+						});
+						
 					}else{
-					
-					$('.noNote').remove();
-					this.saveNote();
-					
+			
+						$('.noNote').remove();
+						this.saveNote();
+			
+					}
 				}
 				
 			};
